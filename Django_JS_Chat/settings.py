@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os.path
 from pathlib import Path
 from keys import DJANGO_KEY
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'core.apps.CoreConfig',
     'room.apps.RoomConfig',
+    'usersaccounts.apps.UsersaccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

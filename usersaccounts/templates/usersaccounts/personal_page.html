@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ user }} | {% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2 align="center" class="px-5 py-3 text-3xl lg:text-6xl text-white">Personal page of user {{ request.user.username }}</h2>
+
+<div class="lg:w-2/4 mt-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
+    <table class="border-collapse border-spacing-2 border border-slate-400">
+        <tbody>
+            <tr>
+                <td>Username</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <a href="/logout/" class="px-5 py-3 rounded-xl text-white bg-teal-700 hover:bh-teal-800">Log out</a>
+</div>
+
+{% else %}
+
+<h2>Not allowed for Anonymous user. Authenticate first</h2>
+
+<a href="{% url 'login' %}" class="px-5 py-3 rounded-xl text-white bg-teal-700 hover:bh-teal-800">Log in</a>
+{% endif %}
+
+{% endblock %}
