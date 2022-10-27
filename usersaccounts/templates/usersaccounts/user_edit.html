@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Edit user info | {% endblock %}
+
+{% block content %}
+<h2> Edit profile </h2>
+<div align="left">
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td>{{ form.first_name }}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>{{ form.last_name }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ form.email }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Confirm">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock content %}

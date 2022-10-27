@@ -5,7 +5,8 @@ from django.db import models
 class ChatUser(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     chat_username = models.CharField(max_length=32, blank=True, verbose_name='chat_username')
-    avatar = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='avatar', blank=True)
+    avatar = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='avatar', blank=True, null=True)
+    about = models.TextField(default='No info provided by user', max_length=510, blank=True)
 
     def __str__(self):
         return '{}'.format(self.user.username)

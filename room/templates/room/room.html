@@ -10,10 +10,13 @@
 <div class="lg:w-2/4 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
     <div class="chat-messages space-y-3" id="chat-messages">
         {% for message in messages %}
+        <div class="flex items-center space-x-4">
+            <img src="{{ message.user.chatuser.avatar }}" alt="{{ message.user.chatuser.chat_username }}">
             <div class="p-4 bg-gray-200 rounded-xl">
-                <p class="font-semibold">{{ message.user.chatuser.chat_username}}</p>
+                <p class="font-semibold">{{ message.user.chatuser.chat_username }}</p>
                 <p>{{ message.content }}</p>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>
