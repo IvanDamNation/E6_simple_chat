@@ -11,7 +11,11 @@
     <div class="chat-messages space-y-3" id="chat-messages">
         {% for message in messages %}
         <div class="flex items-center space-x-4">
-            <img src="{{ message.user.chatuser.avatar }}" alt="{{ message.user.chatuser.chat_username }}">
+            {% if message.user.chatuser.avatar != '' %}
+            <img src="{{ message.user.chatuser.avatar.url }}" alt="{{ message.user.chatuser.chat_username }}" class="rounded-full w-9">
+            {% else %}
+            <img src="..\media\default_avatar.png" alt="{{ message.user.chatuser.chat_username }}" class="rounded-full w-9">
+            {% endif %}
             <div class="p-4 bg-gray-200 rounded-xl">
                 <p class="font-semibold">{{ message.user.chatuser.chat_username }}</p>
                 <p>{{ message.content }}</p>
