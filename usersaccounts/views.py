@@ -1,17 +1,29 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.views.generic import UpdateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
 
 from .forms import ChatUserForm, UserFormUpd
 
 
-class ChatUserUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'usersaccounts/user_edit.html'
-    form_class = UserFormUpd
-    success_url = '/'
+@login_required
+def user_update_view(request):
+    obj = get_object_or_404(User, pk=request.user.pk)
+    form = UserFormUpd(request.POST or None, instance=obj)
+    form_2 = ChatUserForm(request.POST or None)
 
-    def get_object(self, **kwargs):
-        return self.request.user
+    context = {
+        'form': form,
+        'form_2': form_2,
+        'object': obj
+    }
+    if all([form.is_valid(), form_2.is_valid()]):
+        form.save()
+        form_2.save()
+        # print('form', form.cleaned_data)
+        # print('form_2', form_2.cleaned_data)
+
+        context['message'] = 'Saved.'
+    return render(request, 'usersaccounts/user_edit.html', context)
 
 
 def personal_page_view(request):

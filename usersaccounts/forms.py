@@ -7,7 +7,7 @@ from .models import ChatUser
 class ChatUserForm(forms.ModelForm):
     class Meta:
         model = ChatUser
-        fields = ('avatar', 'chat_username')
+        fields = ('avatar', 'chat_username', 'about')
 
 
 class UserFormUpd(forms.ModelForm):
