@@ -3,13 +3,15 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 
 from .forms import ChatUserForm, UserFormUpd
+from .models import ChatUser
 
 
 @login_required
 def user_update_view(request):
     obj = get_object_or_404(User, pk=request.user.pk)
+    obj_2 = get_object_or_404(ChatUser, pk=request.user.pk)
     form = UserFormUpd(request.POST or None, instance=obj)
-    form_2 = ChatUserForm(request.POST or None)
+    form_2 = ChatUserForm(request.POST or None, instance=obj_2)
 
     context = {
         'form': form,

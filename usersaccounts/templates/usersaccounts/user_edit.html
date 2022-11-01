@@ -3,46 +3,46 @@
 {% block title %}Edit user info | {% endblock %}
 
 {% block content %}
-<h2> Edit profile </h2>
-<div align="left">
-    <form method="post">
+<div class="p-10 lg:p-20 text-center">
+    <h1 class="text-3xl lg:text-6xl text-white">Edit profile</h1>
+</div>
+    <form method="post" action="." class="lg:w-1/4 px-4 mx-auto">
         {% csrf_token %}
         <table>
-            <tr>
-                <td>Username</td>
+           <tr>
+                <td class="text-white">Username</td>
                 <td>{{ form.username }}</td>
             </tr>
             <tr>
-                <td>ChatName</td>
+                <td class="text-white">ChatName</td>
                 <td>{{ form_2.chat_username }}</td>
             </tr>
             <tr>
-                <td>First Name</td>
+                <td class="text-white">First Name</td>
                 <td>{{ form.first_name }}</td>
             </tr>
             <tr>
-                <td>Last Name</td>
+                <td class="text-white">Last Name</td>
                 <td>{{ form.last_name }}</td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td class="text-white">Email</td>
                 <td>{{ form.email }}</td>
             </tr>
             <tr>
-                <td>About</td>
+                <td class="text-white">About</td>
                 <td>{{ form_2.about }}</td>
             </tr>
             <tr>
-                <td>Avatar</td>
+                <td class="text-white">Avatar</td>
                 <td>{{ form_2.avatar }}</td>
             </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="Confirm">
-                </td>
-            </tr>
         </table>
+        {% if message %}
+        <div class="mb-5 p-4 rounded-xl bg-blue-300 text-white">
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
+        <input type="submit" value="Confirm" class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">
     </form>
-</div>
 {% endblock content %}
