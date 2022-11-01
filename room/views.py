@@ -1,7 +1,24 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Message, Room
+from .forms import RoomForm
+
+
+@login_required
+def room_create(request):
+    if request.method == "POST":
+        form = RoomForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect('rooms')
+
+    else:
+        form = RoomForm()
+
+    return render(request, 'room/create.html', {'form': form})
 
 
 @login_required

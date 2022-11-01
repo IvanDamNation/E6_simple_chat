@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Create new room | {% endblock %}
+
+{% block content %}
+<form method="post" action="." class="lg:w-1/4 px-4 mx-auto">
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Confirm" class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">
+</form>
+{% endblock %}
